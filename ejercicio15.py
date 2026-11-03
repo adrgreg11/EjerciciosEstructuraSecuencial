@@ -1,7 +1,8 @@
-cola = []
+#Dadas dos variables numéricas A y B, que el usuario debe teclear, se pide realizar un algoritmo que intercambie los valores de ambas variables y muestre cuánto valen al final las dos variables.
+a = input("Valor de A: ")
+b = input("Valor de B: ")
 
-cola.append(input("Añade un elemento: "))
-cola.append(input("Añade otro elemento: "))
+a, b = b, a
 
-print("Sale primero:", cola.pop(0))
-print("Queda en la cola:", cola)
+print("A vale:", a)
+print("B vale:", b)
