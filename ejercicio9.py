@@ -1,9 +1,7 @@
-# Ejercicio 9: aplicar un descuento del 15% a una compra
+# Ejercicio 9: Una tienda ofrece un descuento del 15% sobre el total de la compra y un cliente desea saber cuánto deberá pagar finalmente por su compra
 
-total_compra = float(input("Introduce el total de la compra: "))
+compra = float(input("Total de la compra: "))
 
-descuento = total_compra * 0.15
-total_a_pagar = total_compra - descuento
+total = compra * 0.85
 
-print("Descuento aplicado:", descuento)
-print("Total a pagar:", total_a_pagar)
+print("Total a pagar con el descuento:", total)
