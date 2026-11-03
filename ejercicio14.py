@@ -1,10 +1,10 @@
-#Vamos a crear un programa para trabajar con una pila. Una pila es una estructura de datos que nos permite guardar un conjunto de variables. La característica fundamental es que el último elemento que se añade al conjunto es el primero que se puede sacar
+#Dado un número de dos cifras, diseñe un algoritmo que permita obtener el número invertido. Ejemplo, si se introduce 23 que muestre 32.
 
-pila = []
+numero = int(input("Introduce un número de dos cifras: "))
 
-pila.append(input("Añade un elemento: "))
-pila.append(input("Añade otro elemento: "))
+decenas = numero // 10
+unidades = numero % 10
 
-print("Pila:", pila)
-print("Sale primero:", pila.pop())
-print("Quedan:", len(pila))
+invertido = unidades * 10 + decenas
+
+print("Número invertido:", invertido)
