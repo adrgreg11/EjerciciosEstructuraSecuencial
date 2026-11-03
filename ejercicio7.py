@@ -1,8 +1,8 @@
-# Ejercicio 7: convertir minutos en horas y minutos
+# Ejercicio 7: Realiza un programa que reciba una cantidad de minutos y muestre por pantalla a cuantas horas y minutos corresponde. Por ejemplo: 1000 minutos son 16 horas y 40 minutos.
 
-minutos_totales = int(input("Introduce la cantidad de minutos: "))
+minutos = int(input("Introduce los minutos: "))
 
-horas = minutos_totales // 60
-minutos = minutos_totales % 60
+horas = minutos // 60
+minutos_restantes = minutos % 60
 
-print(minutos_totales, "minutos son", horas, "horas y", minutos, "minutos.")
+print(horas, "horas y", minutos_restantes, "minutos")
