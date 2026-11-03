@@ -1,10 +1,10 @@
-# Ejercicio 6: calcular la media de tres números
+# Ejercicio 6: Calcular la media de tres números pedidos por teclado.
 
 
-numero1 = float(input("Introduce el primer número: "))
-numero2 = float(input("Introduce el segundo número: "))
-numero3 = float(input("Introduce el tercer número: "))
+a = float(input("Primer número: "))
+b = float(input("Segundo número: "))
+c = float(input("Tercer número: "))
 
-media = (numero1 + numero2 + numero3) / 3
+media = (a + b + c) / 3
 
 print("La media es:", media)
