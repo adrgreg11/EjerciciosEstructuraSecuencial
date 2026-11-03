@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>Ejercicios de estructura secuencial · Soluciones Python</title>
+<style>
+:root{--bg:#0b1220;--panel:#121d2e;--panel2:#172438;--text:#edf4ff;--muted:#9fb0c7;--line:#26364d;--accent:#76e4c2;--accent2:#8da7ff;--shadow:0 18px 50px #0005}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#1d3551 0,transparent 35%),radial-gradient(ellipse at 95% 15%,#26315a 0,transparent 28%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+button,input{font:inherit}.wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+header{padding:54px 0 28px}.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #41615e;background:#163b3a88;color:var(--accent);border-radius:999px;padding:7px 12px;font-size:.8rem;font-weight:700;letter-spacing:.04em}
+h1{font-size:clamp(2.1rem,5vw,4.1rem);line-height:1.03;letter-spacing:-.055em;margin:20px 0 14px;max-width:800px}
+.grad{background:linear-gradient(90deg,var(--accent),#9eb6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:1.08rem;max-width:680px;margin:0}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.stat{background:#ffffff0a;border:1px solid var(--line);padding:10px 14px;border-radius:14px;color:var(--muted);font-size:.9rem}.stat b{color:var(--text);font-size:1.1rem;margin-right:5px}
+.toolbar{position:sticky;top:0;z-index:10;padding:15px 0;background:#0b1220df;backdrop-filter:blur(18px);border-block:1px solid #ffffff12}
+.searchrow{display:flex;gap:10px;align-items:center}.searchbox{position:relative;flex:1}.searchbox span{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1.15rem}
+#search{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px 16px 14px 46px;color:var(--text);outline:none;transition:.2s}
+#search:focus{border-color:var(--accent);box-shadow:0 0 0 3px #76e4c222}
+.action{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:13px;padding:12px 15px;cursor:pointer;transition:.2s;white-space:nowrap}.action:hover{border-color:var(--accent);transform:translateY(-1px)}
+.filters{display:flex;gap:8px;overflow:auto;padding:12px 1px 2px;scrollbar-width:thin}.chip{border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 12px;border-radius:999px;white-space:nowrap;cursor:pointer;font-size:.85rem}.chip.active,.chip:hover{background:#1b4a46;border-color:#3b9b85;color:#caffef}
+main{padding:30px 0 70px}.resultsline{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.9rem;margin:0 2px 16px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:linear-gradient(145deg,#172438f2,#111b2bf2);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow);min-width:0;transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-3px);border-color:#47627b}
+.cardtop{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.num{color:var(--accent);font-weight:800;font-size:.78rem;letter-spacing:.1em}.tag{font-size:.72rem;color:#c4d2ff;background:#29385d;padding:5px 9px;border-radius:999px}
+h2{font-size:1.23rem;letter-spacing:-.02em;margin:0 0 8px}.label{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);font-weight:800;margin:17px 0 6px}
+.statement{color:#d4deed;margin:0;font-size:.96rem}.source{font-size:.75rem;color:#8294ac;margin-top:12px}
+.note{margin-top:12px;padding:10px 12px;border-radius:12px;background:#47371866;border:1px solid #80652f;color:#f5d99a;font-size:.84rem}
+.answer{margin-top:17px;border-top:1px solid var(--line);padding-top:14px}.answerhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.answerhead .label{margin:0}.toggle{background:#203c46;color:#b8ffeb;border:1px solid #386c68;border-radius:10px;padding:7px 11px;font-size:.82rem;cursor:pointer}
+.codewrap{display:none;margin-top:12px}.codewrap.show{display:block}.codebar{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.75rem;margin-bottom:7px}
+pre{margin:0;white-space:pre;overflow:auto;background:#080f1b;border:1px solid #26364d;border-radius:13px;padding:15px;color:#d7e8f8;font: .81rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:4}
+.copy{background:#1b2a40;color:#dce9f9;border:1px solid #334861;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:.75rem}.copy:hover{border-color:var(--accent)}
+.empty{display:none;text-align:center;padding:60px 20px;color:var(--muted);border:1px dashed var(--line);border-radius:20px}.empty strong{display:block;color:var(--text);font-size:1.2rem;margin-bottom:6px}
+footer{border-top:1px solid var(--line);padding:24px 0 38px;color:#8192a9;font-size:.82rem}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.wrap{width:min(100% - 24px,620px)}header{padding-top:38px}.searchrow{align-items:stretch}.action{padding-inline:11px}.card{padding:17px}}
+@media(max-width:430px){.searchrow{flex-wrap:wrap}.searchbox{flex-basis:100%}.action{flex:1}.stats{gap:7px}.stat{font-size:.8rem;padding:8px 10px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="eyebrow">✦ CUADERNO INTERACTIVO · PYTHON</div>
+  <h1>Ejercicios de <span class="grad">estructura secuencial</span></h1>
+  <p class="lead">Enunciados y soluciones del proyecto, reunidos en una página para consultar, buscar y estudiar a tu ritmo.</p>
+  <div class="stats"><div class="stat"><b id="total">15</b> ejercicios</div><div class="stat"><b>Python</b> soluciones</div><div class="stat"><b>⌕</b> búsqueda instantánea</div></div>
+</header>
+<section class="toolbar">
+ <div class="wrap">
+  <div class="searchrow">
+   <div class="searchbox"><span>⌕</span><input id="search" type="search" placeholder="Busca por ejercicio, palabra o código..." autocomplete="off" aria-label="Buscar ejercicios"></div>
+   <button class="action" id="expandAll">Mostrar respuestas</button>
+   <button class="action" id="collapseAll">Ocultar respuestas</button>
+  </div>
+  <div class="filters" id="filters"></div>
+ </div>
+</section>
+<main class="wrap">
+ <div class="resultsline"><span id="resultCount">Mostrando 15 ejercicios</span><span>Selecciona «Ver solución» para desplegar el código</span></div>
+ <section class="grid" id="cards"></section>
+ <div class="empty" id="empty"><strong>No se encontraron ejercicios</strong>Prueba con otra palabra o cambia el filtro.</div>
+</main>
+<footer><div class="wrap">Material de estudio basado en los archivos Python del ZIP facilitado. Los enunciados se han redactado a partir del contenido y comportamiento de los programas; el código se reproduce sin modificar.</div></footer>
+<script>
+const exercises = [{"num": 1, "title": "Ejercicio 01", "description": "Pedir al usuario su nombre y mostrar un saludo personalizado.", "code": "# Ejercicio 1: preguntar el nombre y saludar al usuario\n\nnombre = input(\"¿Cómo te llamas? \")\nprint(\"Hola,\", nombre)", "file": "ejercicio1.py", "note": "", "category": "Entrada y salida"}, {"num": 2, "title": "Ejercicio 02", "description": "Solicitar la base y la altura de un rectángulo y calcular su perímetro y su área.", "code": "# Ejercicio 2: calcular el perímetro y el área de un rectángulo\n\nbase = float(input(\"Introduce la base del rectángulo: \"))\naltura = float(input(\"Introduce la altura del rectángulo: \"))\n\nperimetro = (base + altura) * 2\n\narea = base * altura\n\nprint(\"El perímetro del rectángulo es:\", perimetro)\nprint(\"El área del rectángulo es:\", area)", "file": "ejercicio2.py", "note": "", "category": "Geometría"}, {"num": 3, "title": "Ejercicio 03", "description": "Pedir los dos catetos de un triángulo rectángulo y calcular la longitud de la hipotenusa.", "code": "# Ejercicio 3: calcular la hipotenusa de un triángulo rectángulo\n\ncateto1 = float(input(\"Introduce el primer cateto: \"))\ncateto2 = float(input(\"Introduce el segundo cateto: \"))\n\nhipotenusa = (cateto1 ** 2 + cateto2 ** 2) ** 0.5\n\nprint(\"La hipotenusa mide:\", hipotenusa)", "file": "ejercico3.py", "note": "", "category": "Geometría"}, {"num": 4, "title": "Ejercicio 04", "description": "Leer dos números y mostrar su suma, resta, multiplicación y división.", "code": "# Ejercicio 4: operaciones básicas con dos números\n\nnumero1 = float(input(\"Introduce el primer número: \"))\nnumero2 = float(input(\"Introduce el segundo número: \"))\n\nsuma = numero1 + numero2\nresta = numero1 - numero2\nmultiplicacion = numero1 * numero2\ndivision = numero1 / numero2\n\nprint(\"Suma:\", suma)\nprint(\"Resta:\", resta)\nprint(\"Multiplicación:\", multiplicacion)\nprint(\"División:\", division)", "file": "ejercicio4.py", "note": "", "category": "Operaciones"}, {"num": 5, "title": "Ejercicio 05", "description": "Solicitar una temperatura en grados Fahrenheit y convertirla a grados Celsius.", "code": "# Ejercicio 5: convertir grados Fahrenheit a Celsius\n\nfahrenheit = float(input(\"Introduce los grados Fahrenheit: \"))\n\ncelsius = (fahrenheit - 32) * 5 / 9\n\n\nprint(\"La temperatura en grados Celsius es:\", celsius)", "file": "ejercicio5.py", "note": "", "category": "Conversiones"}, {"num": 6, "title": "Ejercicio 06", "description": "Pedir tres números y calcular y mostrar su media aritmética.", "code": "# Ejercicio 6: calcular la media de tres números\n\n\nnumero1 = float(input(\"Introduce el primer número: \"))\nnumero2 = float(input(\"Introduce el segundo número: \"))\nnumero3 = float(input(\"Introduce el tercer número: \"))\n\nmedia = (numero1 + numero2 + numero3) / 3\n\nprint(\"La media es:\", media)", "file": "ejercicio6.py", "note": "", "category": "Operaciones"}, {"num": 7, "title": "Ejercicio 07", "description": "Solicitar una cantidad de minutos y convertirla en horas y minutos.", "code": "# Ejercicio 7: convertir minutos en horas y minutos\n\nminutos_totales = int(input(\"Introduce la cantidad de minutos: \"))\n\nhoras = minutos_totales // 60\nminutos = minutos_totales % 60\n\nprint(minutos_totales, \"minutos son\", horas, \"horas y\", minutos, \"minutos.\")", "file": "ejercicio7.py", "note": "", "category": "Conversiones"}, {"num": 8, "title": "Ejercicio 08", "description": "Pedir el sueldo base y el importe de tres ventas. Calcular una comisión del 10 % sobre las ventas y sumarla al sueldo base.", "code": "# Ejercicio 8: calcular comisiones y sueldo total del mes\n\nsueldo_base = float(input(\"Introduce el sueldo base: \"))\nventa1 = float(input(\"Introduce el importe de la primera venta: \"))\nventa2 = float(input(\"Introduce el importe de la segunda venta: \"))\nventa3 = float(input(\"Introduce el importe de la tercera venta: \"))\n\ncomisiones = (venta1 + venta2 + venta3) * 0.10\n\ntotal_mes = sueldo_base + comisiones\n\nprint(\"Comisiones del mes:\", comisiones)\nprint(\"Total que recibirá este mes:\", total_mes)", "file": "ejercicio8.py", "note": "", "category": "Porcentajes"}, {"num": 9, "title": "Ejercicio 09", "description": "Solicitar el importe total de una compra, aplicar un descuento del 15 % y mostrar el descuento y el total que se debe pagar.", "code": "# Ejercicio 9: aplicar un descuento del 15% a una compra\n\ntotal_compra = float(input(\"Introduce el total de la compra: \"))\n\ndescuento = total_compra * 0.15\ntotal_a_pagar = total_compra - descuento\n\nprint(\"Descuento aplicado:\", descuento)\nprint(\"Total a pagar:\", total_a_pagar)", "file": "ejercicio9.py", "note": "", "category": "Porcentajes"}, {"num": 10, "title": "Ejercicio 10", "description": "Calcular la calificación final de un alumno en Algoritmos: la media de tres parciales cuenta un 55 %, el examen final un 30 % y el trabajo final un 15 %.", "code": "#Un alumno desea saber cuál será su calificación final en la materia de Algoritmos.\n\nparcial1 = float(input(\"Nota del primer parcial: \"))\nparcial2 = float(input(\"Nota del segundo parcial: \"))\nparcial3 = float(input(\"Nota del tercer parcial: \"))\nexamen_final = float(input(\"Nota del examen final: \"))\ntrabajo_final = float(input(\"Nota del trabajo final: \"))\n\npromedio_parciales = (parcial1 + parcial2 + parcial3) / 3\ncalificacion_final = (\n    promedio_parciales * 0.55\n    + examen_final * 0.30\n    + trabajo_final * 0.15\n)\n\nprint(\"La calificación final es:\", calificacion_final)", "file": "ejercicio10.py", "note": "", "category": "Porcentajes"}, {"num": 11, "title": "Ejercicio 11", "description": "Pedir dos números y mostrar la distancia entre ellos, entendida como el valor absoluto de su diferencia.", "code": "#Pide al usuario dos números y muestra la “distancia” entre ellos (el valor absoluto de su diferencia, de modo que el resultado sea siempre positivo).\n\nnumero1 = float(input(\"Introduce el primer número: \"))\nnumero2 = float(input(\"Introduce el segundo número: \"))\n\ndistancia = abs(numero1 - numero2)\n\nprint(\"La distancia entre los números es:\", distancia)", "file": "ejercicio11.py", "note": "", "category": "Operaciones"}, {"num": 12, "title": "Ejercicio 12", "description": "Solicitar las coordenadas de dos puntos del plano y calcular la distancia entre ambos.", "code": "#Pide al usuario dos pares de números x1,y2 y x2,y2, que representen dos puntos en el plano. Calcula y muestra la distancia entre ellos.\n\nx1 = float(input(\"x del primer punto: \"))\ny1 = float(input(\"y del primer punto: \"))\nx2 = float(input(\"x del segundo punto: \"))\ny2 = float(input(\"y del segundo punto: \"))\n\ndistancia = ((x2 - x1)**2 + (y2 - y1)**2)**0.5\n\nprint(\"Distancia:\", distancia)", "file": "ejercicio12.py", "note": "", "category": "Geometría"}, {"num": 13, "title": "Ejercicio 13", "description": "El comentario del archivo menciona trabajar con fracciones, pero el código realmente pide un número y muestra su raíz cuadrada y su cubo. Se conserva el contenido real del archivo.", "code": "#Queremos crear un programa que trabaje con fracciones a/b. Para representar una fracción vamos a dos enteros: numerador y denominador.\n\nimport math\n\nnum=int(input(\"digite un numero\"))\n\nprint(\"raiz cuadrada \",math.sqrt(num))\nprint(\"raiz cubica \", num**3)", "file": "ejercicio13.py", "note": "El comentario del archivo habla de fracciones, pero el programa implementa raíz cuadrada y cubo. Se muestra el código original sin modificar.", "category": "Matemáticas"}, {"num": 14, "title": "Ejercicio 14", "description": "Crear una pila, añadir dos elementos, mostrarla, extraer el último elemento añadido y mostrar cuántos elementos quedan.", "code": "#Vamos a crear un programa para trabajar con una pila. Una pila es una estructura de datos que nos permite guardar un conjunto de variables. La característica fundamental es que el último elemento que se añade al conjunto es el primero que se puede sacar\n\npila = []\n\npila.append(input(\"Añade un elemento: \"))\npila.append(input(\"Añade otro elemento: \"))\n\nprint(\"Pila:\", pila)\nprint(\"Sale primero:\", pila.pop())\nprint(\"Quedan:\", len(pila))", "file": "ejercicio14.py", "note": "", "category": "Estructuras de datos"}, {"num": 15, "title": "Ejercicio 15", "description": "Crear una cola, añadir dos elementos y extraer primero el elemento que lleva más tiempo en la cola.", "code": "cola = []\n\ncola.append(input(\"Añade un elemento: \"))\ncola.append(input(\"Añade otro elemento: \"))\n\nprint(\"Sale primero:\", cola.pop(0))\nprint(\"Queda en la cola:\", cola)", "file": "ejercicio15.py", "note": "", "category": "Estructuras de datos"}];
+const categories = ["Todos",...new Set(exercises.map(x=>x.category))];
+let active = "Todos";
+const cards = document.getElementById("cards");
+const search = document.getElementById("search");
+const filters = document.getElementById("filters");
+const resultCount = document.getElementById("resultCount");
+const empty = document.getElementById("empty");
+document.getElementById("total").textContent = exercises.length;
+
+function makeFilters(){
+  filters.innerHTML = "";
+  categories.forEach(cat=>{
+    const b=document.createElement("button");
+    b.className="chip"+(cat===active?" active":"");
+    b.textContent=cat;
+    b.onclick=()=>{active=cat;makeFilters();render()};
+    filters.appendChild(b);
+  });
+}
+function render(){
+  const q=search.value.trim().toLocaleLowerCase("es");
+  const visible=exercises.filter(x=>(active==="Todos"||x.category===active) &&
+    [x.title,x.description,x.code,x.category,x.file].join(" ").toLocaleLowerCase("es").includes(q));
+  cards.innerHTML="";
+  visible.forEach(x=>{
+    const article=document.createElement("article");
+    article.className="card";
+    article.innerHTML=`
+      <div class="cardtop"><span class="num">EJERCICIO ${String(x.num).padStart(2,"0")}</span><span class="tag"></span></div>
+      <h2></h2><div class="label">Enunciado de la actividad</div><p class="statement"></p>
+      ${x.note?'<div class="note"></div>':""}
+      <div class="answer"><div class="answerhead"><div class="label">Respuesta · Python</div><button class="toggle" aria-expanded="false">Ver solución ↓</button></div>
+      <div class="codewrap"><div class="codebar"><span class="filename"></span><button class="copy">Copiar código</button></div><pre><code></code></pre></div></div>`;
+    article.querySelector(".tag").textContent=x.category;
+    article.querySelector("h2").textContent=x.title;
+    article.querySelector(".statement").textContent=x.description;
+    if(x.note) article.querySelector(".note").textContent=x.note;
+    article.querySelector(".filename").textContent=x.file;
+    article.querySelector("code").textContent=x.code;
+    const toggle=article.querySelector(".toggle"), codewrap=article.querySelector(".codewrap");
+    toggle.addEventListener("click",()=>{
+      const open=codewrap.classList.toggle("show");
+      toggle.textContent=open?"Ocultar solución ↑":"Ver solución ↓";
+      toggle.setAttribute("aria-expanded",String(open));
+    });
+    article.querySelector(".copy").addEventListener("click",async e=>{
+      const btn=e.currentTarget;
+      try{await navigator.clipboard.writeText(x.code);btn.textContent="¡Copiado!";setTimeout(()=>btn.textContent="Copiar código",1400)}
+      catch{btn.textContent="No disponible";setTimeout(()=>btn.textContent="Copiar código",1400)}
+    });
+    cards.appendChild(article);
+  });
+  resultCount.textContent=`Mostrando ${visible.length} de ${exercises.length} ejercicios`;
+  empty.style.display=visible.length?"none":"block";
+}
+search.addEventListener("input",render);
+document.getElementById("expandAll").onclick=()=>document.querySelectorAll(".card").forEach(c=>{c.querySelector(".codewrap").classList.add("show");c.querySelector(".toggle").textContent="Ocultar solución ↑";c.querySelector(".toggle").setAttribute("aria-expanded","true")});
+document.getElementById("collapseAll").onclick=()=>document.querySelectorAll(".card").forEach(c=>{c.querySelector(".codewrap").classList.remove("show");c.querySelector(".toggle").textContent="Ver solución ↓";c.querySelector(".toggle").setAttribute("aria-expanded","false")});
+makeFilters();render();
+</script>
+</body>
+</html>
